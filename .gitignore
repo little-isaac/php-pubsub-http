@@ -5,3 +5,4 @@ bin
 coverage
 coverage.xml
 your-gcloud-key.json
+/nbproject/private/
