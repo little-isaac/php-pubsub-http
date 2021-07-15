@@ -10,7 +10,7 @@
   ],
   "require": {
     "php": ">=5.6.0",
-    "milind/php-pubsub": "^3.0",
+    "milind/php-pubsub": "dev-master",
     "guzzlehttp/guzzle": "^7.0.1"
   },
   "autoload": {
