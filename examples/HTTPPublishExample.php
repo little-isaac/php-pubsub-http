@@ -9,14 +9,14 @@ $pubSubClient = new \Google\Cloud\PubSub\PubSubClient([
     'projectId' => 'your-project-id-here',
 ]);
 
-$subscribeAdapter = new \Superbalist\PubSub\GoogleCloud\GoogleCloudPubSubAdapter($pubSubClient);
+$subscribeAdapter = new \milind\PubSub\GoogleCloud\GoogleCloudPubSubAdapter($pubSubClient);
 
 // now create our decorator
 // the decorator will proxy subscribe calls straight to the $subscribeAdapter
 // publish calls will be POSTed to the service uri
 $client = new \GuzzleHttp\Client();
 
-$adapter = new \Superbalist\PubSub\HTTP\HTTPPubSubAdapter($client, 'http://127.0.0.1', $subscribeAdapter);
+$adapter = new \milind\PubSub\HTTP\HTTPPubSubAdapter($client, 'http://127.0.0.1', $subscribeAdapter);
 
 $adapter->publish('my_channel', ['lorem' => 'ipsum']);
 

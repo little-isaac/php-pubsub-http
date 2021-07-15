@@ -6,8 +6,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use Mockery;
 use PHPUnit\Framework\TestCase;
-use Superbalist\PubSub\HTTP\HTTPPubSubAdapter;
-use Superbalist\PubSub\PubSubAdapterInterface;
+use milind\PubSub\HTTP\HTTPPubSubAdapter;
+use milind\PubSub\PubSubAdapterInterface;
 
 class HTTPPubSubAdapterTest extends TestCase
 {
@@ -42,7 +42,7 @@ class HTTPPubSubAdapterTest extends TestCase
         $client = Mockery::mock(Client::class);
         $subscribeAdapter = Mockery::mock(PubSubAdapterInterface::class);
         $adapter = new HTTPPubSubAdapter($client, 'http://127.0.0.1', $subscribeAdapter);
-        $this->assertEquals('superbalist/php-pubsub-http', $adapter->getUserAgent());
+        $this->assertEquals('milind/php-pubsub-http', $adapter->getUserAgent());
         $adapter->setUserAgent('meh');
         $this->assertEquals('meh', $adapter->getUserAgent());
     }
@@ -64,7 +64,7 @@ class HTTPPubSubAdapterTest extends TestCase
             'POST',
             'http://127.0.0.1/messages/test',
             [
-                'User-Agent' => 'superbalist/php-pubsub-http',
+                'User-Agent' => 'milind/php-pubsub-http',
                 'Content-Type' => 'application/json',
             ],
             json_encode(['messages' => ['hello', 'world']])
@@ -73,7 +73,7 @@ class HTTPPubSubAdapterTest extends TestCase
         $client = Mockery::mock(Client::class);
         $subscribeAdapter = Mockery::mock(PubSubAdapterInterface::class);
         $adapter = Mockery::mock(
-            '\Superbalist\PubSub\HTTP\HTTPPubSubAdapter[createRequest,sendRequest]',
+            '\milind\PubSub\HTTP\HTTPPubSubAdapter[createRequest,sendRequest]',
             [$client, 'http://127.0.0.1', $subscribeAdapter]
         );
         $adapter->shouldAllowMockingProtectedMethods();
@@ -117,7 +117,7 @@ class HTTPPubSubAdapterTest extends TestCase
         $client = Mockery::mock(Client::class);
         $subscribeAdapter = Mockery::mock(PubSubAdapterInterface::class);
         $adapter = Mockery::mock(
-            '\Superbalist\PubSub\HTTP\HTTPPubSubAdapter[post]',
+            '\milind\PubSub\HTTP\HTTPPubSubAdapter[post]',
             [$client, 'http://127.0.0.1', $subscribeAdapter]
         );
         $adapter->shouldReceive('post')
@@ -140,7 +140,7 @@ class HTTPPubSubAdapterTest extends TestCase
         $client = Mockery::mock(Client::class);
         $subscribeAdapter = Mockery::mock(PubSubAdapterInterface::class);
         $adapter = Mockery::mock(
-            '\Superbalist\PubSub\HTTP\HTTPPubSubAdapter[post]',
+            '\milind\PubSub\HTTP\HTTPPubSubAdapter[post]',
             [$client, 'http://127.0.0.1', $subscribeAdapter]
         );
         $adapter->shouldReceive('post')

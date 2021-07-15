@@ -1,11 +1,11 @@
 <?php
 
-namespace Superbalist\PubSub\HTTP;
+namespace milind\PubSub\HTTP;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
-use Superbalist\PubSub\PubSubAdapterInterface;
+use milind\PubSub\PubSubAdapterInterface;
 
 class HTTPPubSubAdapter implements PubSubAdapterInterface
 {
@@ -27,7 +27,7 @@ class HTTPPubSubAdapter implements PubSubAdapterInterface
     /**
      * @var string
      */
-    protected $userAgent = 'superbalist/php-pubsub-http';
+    protected $userAgent = 'milind/php-pubsub-http';
 
     /**
      * @param Client $client

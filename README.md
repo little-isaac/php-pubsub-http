@@ -1,23 +1,23 @@
 # php-pubsub-http
 
-An HTTP adapter for the [php-pubsub](https://github.com/Superbalist/php-pubsub) package.
+An HTTP adapter for the [php-pubsub](https://github.com/milind/php-pubsub) package.
 
-[![Author](http://img.shields.io/badge/author-@superbalist-blue.svg?style=flat-square)](https://twitter.com/superbalist)
-[![Build Status](https://img.shields.io/travis/Superbalist/php-pubsub-http/master.svg?style=flat-square)](https://travis-ci.org/Superbalist/php-pubsub-http)
+[![Author](http://img.shields.io/badge/author-@milind-blue.svg?style=flat-square)](https://twitter.com/milind)
+[![Build Status](https://img.shields.io/travis/milind/php-pubsub-http/master.svg?style=flat-square)](https://travis-ci.org/milind/php-pubsub-http)
 [![StyleCI](https://styleci.io/repos/67334430/shield?branch=master)](https://styleci.io/repos/67334430)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Packagist Version](https://img.shields.io/packagist/v/superbalist/php-pubsub-http.svg?style=flat-square)](https://packagist.org/packages/superbalist/php-pubsub-http)
-[![Total Downloads](https://img.shields.io/packagist/dt/superbalist/php-pubsub-http.svg?style=flat-square)](https://packagist.org/packages/superbalist/php-pubsub-http)
+[![Packagist Version](https://img.shields.io/packagist/v/milind/php-pubsub-http.svg?style=flat-square)](https://packagist.org/packages/milind/php-pubsub-http)
+[![Total Downloads](https://img.shields.io/packagist/dt/milind/php-pubsub-http.svg?style=flat-square)](https://packagist.org/packages/milind/php-pubsub-http)
 
 This adapter assumes that you have a HTTP service which accepts an array of messages POSTed to a /messages/(channel) end-point.
 
-A server-side implementation, [js-pubsub-rest-proxy](https://github.com/Superbalist/js-pubsub-rest-proxy), is available
+A server-side implementation, [js-pubsub-rest-proxy](https://github.com/milind/js-pubsub-rest-proxy), is available
 as a plug and play Docker appliance.
 
 ## Installation
 
 ```bash
-composer require superbalist/php-pubsub-http
+composer require milind/php-pubsub-http
 ```
 
 ## Usage
@@ -30,14 +30,14 @@ $pubSubClient = new \Google\Cloud\PubSub\PubSubClient([
     'projectId' => 'your-project-id-here',
 ]);
 
-$subscribeAdapter = new \Superbalist\PubSub\GoogleCloud\GoogleCloudPubSubAdapter($pubSubClient);
+$subscribeAdapter = new \milind\PubSub\GoogleCloud\GoogleCloudPubSubAdapter($pubSubClient);
 
 // now create our decorator
 // the decorator will proxy subscribe calls straight to the $subscribeAdapter
 // publish calls will be POSTed to the service uri
 $client = new \GuzzleHttp\Client();
 
-$adapter = new \Superbalist\PubSub\HTTP\HTTPPubSubAdapter($client, 'https://127.0.0.1', $subscribeAdapter);
+$adapter = new \milind\PubSub\HTTP\HTTPPubSubAdapter($client, 'https://127.0.0.1', $subscribeAdapter);
 
 // consume messages
 $adapter->subscribe('my_channel', function ($message) {
